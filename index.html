@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Solar System</title>
+    <style>
+        :root {
+            /* Planet sizes */
+            --sun-size: 60px;
+            --mercury-size: 6px;
+            --venus-size: 10px;
+            --earth-size: 12px;
+            --mars-size: 8px;
+            --jupiter-size: 30px;
+            --saturn-size: 25px;
+            --uranus-size: 20px;
+            --neptune-size: 18px;
+            
+            /* Orbit distances (diameter) */
+            --mercury-orbit: 100px;
+            --venus-orbit: 160px;
+            --earth-orbit: 230px;
+            --mars-orbit: 300px;
+            --jupiter-orbit: 420px;
+            --saturn-orbit: 550px;
+            --uranus-orbit: 670px;
+            --neptune-orbit: 780px;
+
+            /* Orbital periods (animation duration) */
+            --mercury-period: 8.8s;
+            --venus-period: 22.5s;
+            --earth-period: 36.5s;
+            --mars-period: 68.7s;
+            --jupiter-period: 120s;
+            --saturn-period: 295s;
+            --uranus-period: 420s;
+            --neptune-period: 600s;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000010;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* The universe container holds everything and establishes the perspective */
+        .universe {
+            position: relative;
+            width: var(--neptune-orbit);
+            height: var(--neptune-orbit);
+            transform: scale(0.9); /* Adjust scale for better viewing on smaller screens */
+        }
+        
+        /* The sun is the central point */
+        .sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: var(--sun-size);
+            height: var(--sun-size);
+            background-color: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #FFD700, 0 0 50px #FF8C00;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Each orbit is a circular path for a planet */
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            animation: rotateOrbit linear infinite;
+        }
+
+        /* Planet is the object moving along the orbit */
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Keyframes for the rotation animation */
+        @keyframes rotateOrbit {
+            from {
+                transform: translate(-50%, -50%) rotateZ(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotateZ(360deg);
+            }
+        }
+        
+        /* --- Planet & Orbit Specific Styles --- */
+        
+        /* Mercury */
+        #mercury-orbit {
+            width: var(--mercury-orbit);
+            height: var(--mercury-orbit);
+            animation-duration: var(--mercury-period);
+        }
+        #mercury {
+            width: var(--mercury-size);
+            height: var(--mercury-size);
+            background-color: #A9A9A9;
+        }
+        
+        /* Venus */
+        #venus-orbit {
+            width: var(--venus-orbit);
+            height: var(--venus-orbit);
+            animation-duration: var(--venus-period);
+        }
+        #venus {
+            width: var(--venus-size);
+            height: var(--venus-size);
+            background-color: #DEB887;
+        }
+
+        /* Earth */
+        #earth-orbit {
+            width: var(--earth-orbit);
+            height: var(--earth-orbit);
+            animation-duration: var(--earth-period);
+        }
+        #earth {
+            width: var(--earth-size);
+            height: var(--earth-size);
+            background-color: #4682B4;
+        }
+
+        /* Mars */
+        #mars-orbit {
+            width: var(--mars-orbit);
+            height: var(--mars-orbit);
+            animation-duration: var(--mars-period);
+        }
+        #mars {
+            width: var(--mars-size);
+            height: var(--mars-size);
+            background-color: #CD5C5C;
+        }
+        
+        /* Jupiter */
+        #jupiter-orbit {
+            width: var(--jupiter-orbit);
+            height: var(--jupiter-orbit);
+            animation-duration: var(--jupiter-period);
+        }
+        #jupiter {
+            width: var(--jupiter-size);
+            height: var(--jupiter-size);
+            background-color: #D2B48C;
+        }
+        
+        /* Saturn */
+        #saturn-orbit {
+            width: var(--saturn-orbit);
+            height: var(--saturn-orbit);
+            animation-duration: var(--saturn-period);
+        }
+        #saturn {
+            width: var(--saturn-size);
+            height: var(--saturn-size);
+            background-color: #F0E68C;
+            /* Creating the rings with a pseudo-element */
+            position: relative;
+        }
+        #saturn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 180%;
+            height: 180%;
+            border: 2px solid rgba(240, 230, 140, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+        }
+        
+        /* Uranus */
+        #uranus-orbit {
+            width: var(--uranus-orbit);
+            height: var(--uranus-orbit);
+            animation-duration: var(--uranus-period);
+        }
+        #uranus {
+            width: var(--uranus-size);
+            height: var(--uranus-size);
+            background-color: #ADD8E6;
+        }
+        
+        /* Neptune */
+        #neptune-orbit {
+            width: var(--neptune-orbit);
+            height: var(--neptune-orbit);
+            animation-duration: var(--neptune-period);
+        }
+        #neptune {
+            width: var(--neptune-size);
+            height: var(--neptune-size);
+            background-color: #4169E1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="universe">
+        <div class="sun"></div>
+
+        <!-- Mercury -->
+        <div class="orbit" id="mercury-orbit">
+            <div class="planet" id="mercury"></div>
+        </div>
+
+        <!-- Venus -->
+        <div class="orbit" id="venus-orbit">
+            <div class="planet" id="venus"></div>
+        </div>
+
+        <!-- Earth -->
+        <div class="orbit" id="earth-orbit">
+            <div class="planet" id="earth"></div>
+        </div>
+
+        <!-- Mars -->
+        <div class="orbit" id="mars-orbit">
+            <div class="planet" id="mars"></div>
+        </div>
+
+        <!-- Jupiter -->
+        <div class="orbit" id="jupiter-orbit">
+            <div class="planet" id="jupiter"></div>
+        </div>
+
+        <!-- Saturn -->
+        <div class="orbit" id="saturn-orbit">
+            <div class="planet" id="saturn"></div>
+        </div>
+
+        <!-- Uranus -->
+        <div class="orbit" id="uranus-orbit">
+            <div class="planet" id="uranus"></div>
+        </div>
+
+        <!-- Neptune -->
+        <div class="orbit" id="neptune-orbit">
+            <div class="planet" id="neptune"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

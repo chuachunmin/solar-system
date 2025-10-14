@@ -54,7 +54,7 @@
             position: relative;
             width: var(--neptune-orbit);
             height: var(--neptune-orbit);
-            transform: scale(0.9); /* Adjust scale for better viewing on smaller screens */
+            transform: scale(0.9); /* Default scale */
         }
         
         /* The sun is the central point */
@@ -209,6 +209,25 @@
             width: var(--neptune-size);
             height: var(--neptune-size);
             background-color: #4169E1;
+        }
+
+        /* Media Queries for Responsive Scaling */
+        @media (max-width: 820px) { /* Neptune's orbit is 780px */
+            .universe {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .universe {
+                transform: scale(0.5);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .universe {
+                transform: scale(0.35);
+            }
         }
 
     </style>
